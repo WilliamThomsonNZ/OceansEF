@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Libre+Baskerville&family=Quattrocento+Sans&display=swap");
+
 .container {
   width: 100vw;
   padding: 0 15px;
@@ -14,11 +16,8 @@
 
   z-index: 1;
   .logo {
-    width: 50px;
-    height: 30px;
-    border: 1px solid black;
-    padding: 0;
-    margin: 0;
+    font-family: "Homemade Apple";
+    font-size: 15px;
   }
 }
 .button {
@@ -53,4 +52,75 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.heading {
+  font-family: "Libre Baskerville";
+  font-size: 56px;
+  margin: 0;
+  line-height: 1;
+}
+.subHeading {
+  font-family: "Homemade Apple";
+  font-size: 14px;
+  margin: 0;
+  margin-left: 7px;
+}
+.description {
+  font-family: "Quattrocento Sans";
+  line-height: 1.5;
+  font-size: 14px;
+  max-width: 300px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+.mintingButtonsContianer {
+  width: fit-content;
+}
+.innerContainer {
+  margin-bottom: 10vh;
+}
+.headerButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.openseaLogo {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.totalSold {
+  font-family: "Libre Baskerville";
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .button.connectWallet {
+    margin-right: 50px;
+  }
+  .innerContainer,
+  .logo {
+    margin-left: 50px;
+  }
+  .heading {
+    font-size: 8vw;
+  }
+  .subHeading {
+    font-size: 1.5vw;
+    margin-left: 0.8vw;
+  }
+  .description {
+    max-width: 40vw;
+    font-size: 1vw;
+    margin-left: 0.8vw;
+  }
+  .backgroundImage {
+    object-position: 50% 75%;
+  }
+  .mintingButtonsContianer {
+    margin-left: 0.8vw;
+  }
 }

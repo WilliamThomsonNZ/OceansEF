@@ -6,6 +6,7 @@ import Web3Modal from "web3modal"
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../constants"
 import Image from 'next/image'
 import background from "../assets/background.jpg"
+import opensea from "../assets/opensea.png"
 
 
 export default function Home() {
@@ -71,6 +72,7 @@ export default function Home() {
     const mintPrice = 0.044;
     try{
       if(amountToMint == 0) return;
+      if(mintedAmount == 10) return;
       setLoading(true);
       const signer = await getProviderOrSigner(true);
       const contract =  new Contract(CONTRACT_ADDRESS,CONTRACT_ABI, signer);
@@ -82,6 +84,7 @@ export default function Home() {
 
     }catch(err){
       console.error(err)
+      setLoading(false);
     }
   }
   function handleMintAmount(isSubtract = false){
@@ -104,21 +107,28 @@ export default function Home() {
     <main className={styles.container}>
       <Image src={background} alt={"background image of beach"} className={styles.backgroundImage} layout="fill"/>
       <header className={styles.header}>
-        <div className={styles.logo}>
-    
+        <h6 className={styles.logo}>
+          Erin Fleming
+        </h6>
+        <div className={styles.headerButtons}>
+          <a href={"#"} target="_blank" className={styles.openseaLogo}><Image src={opensea} alt="opensea logo"/></a>
+          <button className={`${styles.button} ${styles.connectWallet}`} onClick={e => handleConnectWalletClick(e)}>{connectText}</button>
         </div>
-        <button className={styles.button} onClick={e => handleConnectWalletClick(e)}>{connectText}</button>
       </header>
       <div className={styles.contentContainer}>
           <div className={styles.innerContainer}>
-          <div className={styles.mintingButtonsContianer}>
-            <div className={styles.mintControlsContainer}>
-              <button className={styles.button} onClick={(e) => handleMintAmount(true)}>-</button>
-              <span className={styles.amountToMint}>{amountToMint}</span>
-              <button className={styles.button} onClick={(e) => handleMintAmount()}>+</button>
+            <h1 className={styles.heading}>Oceans</h1>
+            <h2 className={styles.subHeading}>by Erin Fleming</h2>
+            <p className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ligula sem, eget iaculis nisl convallis id. Praesent iaculis diam tortor, eu viverra mi posuere placerat. </p>
+            <h6 className={styles.totalSold}>Total Sold: {mintedAmount}/10</h6> 
+            <div className={styles.mintingButtonsContianer}>
+              <div className={styles.mintControlsContainer}>
+                <button className={styles.button} onClick={(e) => handleMintAmount(true)}>-</button>
+                <span className={styles.amountToMint}>{amountToMint}</span>
+                <button className={styles.button} onClick={(e) => handleMintAmount()}>+</button>
+              </div>
+              <button className={`${styles.button} ${styles.mintButton}`} onClick={e => handleMintClick(e)}>{loading ? "Minting..." : mintedAmount == 10 ? "Sold Out" : "Mint"}</button>
             </div>
-            <button className={`${styles.button} ${styles.mintButton}`} onClick={e => handleMintClick(e)}>Mint</button>
-          </div>
         </div>
       </div>
     </main>
