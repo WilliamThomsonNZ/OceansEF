@@ -1,0 +1,64 @@
+.header {
+  margin-top: 35px;
+  margin-bottom: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 1;
+  .logo {
+    width: 45px !important;
+    height: 45px !important;
+    cursor: pointer;
+  }
+}
+.button {
+  background-color: transparent;
+  border: 1px solid black;
+  padding: 8px 10px;
+  font-family: "Lato";
+  font-weight: bold;
+}
+.mobileNav {
+  display: none;
+}
+.mobileNavButton {
+  font-family: "Lato";
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 13px;
+}
+
+.desktopNav {
+  display: none;
+  ul {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+  ul .navItem {
+    list-style: none;
+    font-family: "Lato";
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mobileNavButton {
+    display: none;
+  }
+  .button {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+  .desktopNav {
+    display: block;
+  }
+}

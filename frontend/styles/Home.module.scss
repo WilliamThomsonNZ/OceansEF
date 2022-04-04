@@ -1,11 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Libre+Baskerville&family=Quattrocento+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Libre+Baskerville&family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arimo&family=Lato:wght@400;700&display=swap");
 
 .container {
   width: 100vw;
-  padding: 0 15px;
+  padding: 0 25px;
   span {
     z-index: -1;
   }
+}
+.desktopMoreButton {
+  display: none;
 }
 .header {
   margin-top: 15px;
@@ -42,9 +46,16 @@
   margin: 0 8px;
 }
 .mintButton {
-  width: 100%;
+  width: 150px;
+  height: 55px;
   display: block;
-  margin-top: 8px;
+  background: black;
+  color: #fff;
+  font-family: "Lato";
+  text-transform: uppercase;
+  letter-spacing: 0.275em;
+  font-size: 11px;
+  margin-bottom: 100px;
 }
 .backgroundImage {
   position: absolute;
@@ -55,15 +66,22 @@
 }
 .heading {
   font-family: "Libre Baskerville";
-  font-size: 56px;
+  font-size: 46px;
   margin: 0;
-  line-height: 1;
+  line-height: 57px;
+  font-weight: normal;
+  margin-bottom: 35px;
+  max-width: 350px;
 }
 .subHeading {
-  font-family: "Homemade Apple";
-  font-size: 14px;
+  font-family: "Lato";
+  font-size: 11px;
+  letter-spacing: 0.06em;
   margin: 0;
   margin-left: 7px;
+  color: #aaa;
+  margin-bottom: 15px;
+  font-weight: 500;
 }
 .description {
   font-family: "Quattrocento Sans";
@@ -76,42 +94,41 @@
 .mintingButtonsContianer {
   width: fit-content;
 }
-.innerContainer {
-  margin-bottom: 10vh;
-}
+
 .headerButtons {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.openseaLogo {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  margin-right: 10px;
-}
-.totalSold {
-  font-family: "Libre Baskerville";
-  font-size: 16px;
-  margin: 0;
-  margin-bottom: 12px;
-}
 
+.moreAboutPhotographer {
+  background: none;
+  border: none;
+  letter-spacing: 0.06em;
+  padding: 0 0 6px 0;
+  border-bottom: 1px solid #000;
+  font-family: "Lato";
+  font-weight: 500;
+  margin-bottom: 35px;
+  color: #000;
+}
+.mainHomeImage {
+  margin-bottom: 35px !important;
+}
+.subImageContainer {
+  //width: 300px;
+  grid-area: subImage;
+}
 @media (min-width: 768px) {
-  .button.connectWallet {
-    margin-right: 50px;
-  }
-  .innerContainer,
-  .logo {
-    margin-left: 50px;
-  }
   .heading {
-    font-size: 8vw;
+    font-size: 64px;
+    max-width: 55vw;
+    line-height: 1.1;
   }
   .subHeading {
-    font-size: 1.5vw;
-    margin-left: 0.8vw;
+    font-size: 12px;
   }
+
   .description {
     max-width: 40vw;
     font-size: 1vw;
@@ -120,7 +137,97 @@
   .backgroundImage {
     object-position: 50% 75%;
   }
-  .mintingButtonsContianer {
-    margin-left: 0.8vw;
+}
+@media (min-width: 1300px) {
+  .mobileMoreButton {
+    display: none;
+  }
+  .desktopMoreButton {
+    display: block;
+    grid-area: moreInfo;
+    width: fit-content;
+    height: fit-content;
+    align-self: end;
+    margin-bottom: 10px;
+  }
+  .mintButton {
+    width: 210px;
+    font-size: 16px;
+    height: 75px;
+  }
+  .heading {
+    font-size: 72px;
+    width: 500px;
+    margin-bottom: 55px;
+  }
+  .subHeading {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .container {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: space-between;
+  }
+  .indexContainer {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gridContainer {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 25px;
+    grid-template-areas:
+      ". . . . . mainImage mainImage"
+      "text text . subImage subImage mainImage mainImage "
+      "text text . subImage subImage mainImage mainImage "
+      "moreInfo moreInfo .  subImage subImage . .";
+  }
+
+  .innerContainer {
+    grid-area: text;
+  }
+  .mainImageContainer {
+    grid-area: mainImage;
+    .mainHomeImage {
+      margin-bottom: 0px !important;
+    }
+    div {
+      //width: 600px;
+    }
+    span {
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .mintButton {
+    width: 210px;
+    font-size: 16px;
+    height: 75px;
+  }
+  .heading {
+    font-size: 84px;
+    width: 600px;
+    line-height: 104px;
+  }
+  .subHeading {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .moreAboutPhotographer {
+    font-size: 16px;
+  }
+  .desktopMoreButton {
+    margin-bottom: 63px;
   }
 }
