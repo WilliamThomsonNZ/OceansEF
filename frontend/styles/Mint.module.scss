@@ -1,3 +1,18 @@
-.heading {
-  max-width: unset;
+.mintContainer {
+  .heading {
+    max-width: unset;
+    margin-bottom: 35px;
+  }
+  .description {
+    font-family: "Lato";
+    max-width: 400px;
+    line-height: 30px;
+    margin: 0;
+  }
+  .totalMinted {
+    font-family: "Lato";
+    letter-spacing: 0.06em;
+    font-size: 14px;
+    color: #aaa;
+  }
 }

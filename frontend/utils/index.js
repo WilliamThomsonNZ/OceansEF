@@ -1,5 +1,6 @@
-import { providers } from "ethers";
+import { providers, Contract } from "ethers";
 import Web3Modal from "web3modal";
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../constants";
 
 export async function getProviderOrSigner(needSigner = false) {
   const web3modal = new Web3Modal({
@@ -24,4 +25,15 @@ export async function getProviderOrSigner(needSigner = false) {
 export function readifyAddress(addr) {
   const readableAddr = `${addr.slice(0, 4)}...${addr.slice(-4)}`;
   return readableAddr;
+}
+
+export async function getAmountMinted() {
+  try {
+    const provider = await getProviderOrSigner(false);
+    const contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
+    const amountMinted = await contract.getAmountMinted();
+    return amountMinted;
+  } catch (err) {
+    console.error(err);
+  }
 }

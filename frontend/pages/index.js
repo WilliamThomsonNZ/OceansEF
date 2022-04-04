@@ -9,7 +9,7 @@ import subImage from "../assets/4.jpg";
 import opensea from "../assets/opensea.png";
 import Header from "../components/header/Header.js";
 import { useAppContext } from "../context/state";
-import { getProviderOrSigner } from "../utils";
+import { getProviderOrSigner, getAmountMinted } from "../utils";
 export default function Home() {
   const [amountToMint, setAmountToMint] = useState(0);
   const [mintedAmount, setMintedAmount] = useState(0);
@@ -18,25 +18,13 @@ export default function Home() {
 
   const userState = useAppContext();
 
-  async function getAmountMinted() {
-    try {
-      const provider = await getProviderOrSigner(false, userState.web3Modal);
-      const contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
-      const amountMinted = await contract.getAmountMinted();
-      console.log(amountMinted);
-      setMintedAmount(amountMinted);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
   async function handleMintClick() {
     const mintPrice = 0.044;
     try {
       if (amountToMint == 0) return;
       if (mintedAmount == 10) return;
       setLoading(true);
-      const signer = await getProviderOrSigner(true, userState.web3Modal);
+      const signer = await getProviderOrSigner(true);
       const contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
       const mintValue = String(amountToMint * mintPrice);
       const tx = await contract.mint(amountToMint, {
@@ -62,8 +50,12 @@ export default function Home() {
   }
 
   useEffect(() => {
-    console.log(userState);
-    getAmountMinted();
+    async function run() {
+      console.log(userState);
+      const amount = await getAmountMinted();
+      setMintedAmount(amount);
+    }
+    run();
   }, []);
 
   return (
