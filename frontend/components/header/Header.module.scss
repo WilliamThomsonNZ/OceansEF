@@ -18,6 +18,7 @@
   padding: 8px 10px;
   font-family: "Lato";
   font-weight: bold;
+  cursor: pointer;
 }
 .mobileNav {
   display: none;
@@ -47,6 +48,11 @@
     font-weight: bold;
     font-size: 16px;
     letter-spacing: 0.06em;
+    padding: 0;
+    padding-bottom: 6px;
+  }
+  .selected {
+    border-bottom: 2px solid #000;
   }
 }
 

@@ -1,18 +1,124 @@
 .mintContainer {
   .heading {
     max-width: unset;
-    margin-bottom: 35px;
+    margin-bottom: 28px;
   }
   .description {
     font-family: "Lato";
     max-width: 400px;
     line-height: 30px;
-    margin: 0;
+    margin: 0 0 35px 0;
   }
   .totalMinted {
     font-family: "Lato";
     letter-spacing: 0.06em;
     font-size: 14px;
     color: #aaa;
+  }
+  .mintButton {
+    cursor: pointer;
+    margin-bottom: 45px;
+  }
+}
+.errorMessage {
+  color: red;
+  visibility: hidden;
+  font-family: "Lato";
+  letter-spacing: 0.06em;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: block;
+  &.showError {
+    visibility: visible;
+  }
+}
+.buttonLoading {
+  width: 20px;
+  height: 20px;
+}
+.mintControls {
+  display: grid;
+  height: 55px;
+  grid-template-areas:
+    "amount increase"
+    "amount decrease";
+
+  .controlButton {
+    background: none;
+    border: 1px solid #000;
+    width: 32px;
+    font-family: "Libre Baskerville";
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .mintButtonIncrease {
+    grid-area: increase;
+  }
+  .mintButtonDecrease {
+    grid-area: decrease;
+    border-top: none;
+  }
+  .numberToMint {
+    line-height: 53px;
+    grid-area: amount;
+    width: 45px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Libre Baskerville";
+    border: 1px solid #000;
+    border-right: none;
+  }
+}
+.mintButtonContainer {
+  display: flex;
+}
+
+@media (min-width: 1300px) {
+  .layoutGrid {
+    display: grid;
+    max-width: 1600px;
+    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .mintPageContainer {
+    height: 82vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mintContainer {
+    align-self: center;
+    .heading {
+      max-width: unset;
+      width: unset;
+      line-height: 1;
+      margin-bottom: 40px;
+    }
+    .description {
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 35px;
+      margin-bottom: 40px;
+    }
+    .totalMinted {
+      font-size: 16px;
+      margin-bottom: 45px;
+      margin-top: 0;
+    }
+    .errorMessage {
+      font-size: 16px;
+    }
+  }
+  .mintControls {
+    height: 75px;
+    .numberToMint {
+      line-height: 73px;
+      font-size: 22px;
+    }
+    .controlButton {
+      font-size: 22px;
+      width: 39px;
+    }
   }
 }

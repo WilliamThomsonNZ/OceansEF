@@ -14,7 +14,7 @@ export default function Header({ currentPage }) {
     try {
       const signer = await getProviderOrSigner(true, userState.web3Modal);
       const addr = await signer.getAddress();
-      userState.updateWalletAddress(readifyAddress(addr));
+      userState.updateWalletAddress(addr);
       userState.updateWalletConnected(true);
     } catch (err) {
       console.error(err);
@@ -25,9 +25,9 @@ export default function Header({ currentPage }) {
     if (!userState.walletConnected) {
       connectWallet();
     }
-    console.log(userState);
   }
   useEffect(() => {
+    console.log(currentPage);
     handleConnectWalletClick();
   }, []);
   return (
@@ -43,12 +43,20 @@ export default function Header({ currentPage }) {
       </Link>
       <nav className={styles.mobileNav}>
         <ul>
-          <li className={styles.navItem}>
+          <li
+            className={`${styles.navItem} ${
+              currentPage == "mint" ? styles.selected : undefined
+            }`}
+          >
             <Link href="/mint">
               <a>MINT</a>
             </Link>
           </li>
-          <li className={styles.navItem}>
+          <li
+            className={`${styles.navItem} ${
+              currentPage == "gallery" ? styles.selected : undefined
+            }`}
+          >
             <Link href="/gallery">
               <a>GALLERY</a>
             </Link>
@@ -58,12 +66,20 @@ export default function Header({ currentPage }) {
       </nav>
       <nav className={styles.desktopNav}>
         <ul>
-          <li className={styles.navItem}>
+          <li
+            className={`${styles.navItem} ${
+              currentPage == "mint" ? styles.selected : undefined
+            }`}
+          >
             <Link href="/mint">
               <a>MINT</a>
             </Link>
           </li>
-          <li className={styles.navItem}>
+          <li
+            className={`${styles.navItem} ${
+              currentPage == "gallery" ? styles.selected : undefined
+            }`}
+          >
             <Link href="/gallery">
               <a>GALLERY</a>
             </Link>
@@ -77,7 +93,9 @@ export default function Header({ currentPage }) {
           className={`${styles.button} ${styles.connectWallet}`}
           onClick={(e) => handleConnectWalletClick(e)}
         >
-          {userState.userWallet ? userState.userWallet : "Connect Wallet"}
+          {userState.userWallet
+            ? readifyAddress(userState.userWallet)
+            : "Connect Wallet"}
         </button>
       </div>
     </header>
