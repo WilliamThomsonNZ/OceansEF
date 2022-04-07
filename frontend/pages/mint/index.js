@@ -11,7 +11,7 @@ import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../../constants";
 import Loading from "../../components/LoadingAnimation";
 
 export default function Mint() {
-  const [totalMinted, setTotalMinted] = useState(0);
+  const [totalMinted, setTotalMinted] = useState("0");
   const [loading, setLoading] = useState(false);
   const [amountToMint, setAmountToMint] = useState(1);
   const [displayError, setDisplayError] = useState(false);

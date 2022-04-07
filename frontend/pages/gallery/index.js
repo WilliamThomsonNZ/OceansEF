@@ -5,6 +5,7 @@ import styles from "../../styles/Gallery.module.scss";
 import Image from "next/image";
 import { readifyAddress } from "../../utils";
 import Loading from "../../components/LoadingAnimation";
+import AnimatedLetters from "../../components/AnimatedLetters";
 export default function Gallery() {
   const baseURI = "https://gateway.moralisipfs.com/ipfs/";
   const [imageObjects, setImageObjects] = useState([]);

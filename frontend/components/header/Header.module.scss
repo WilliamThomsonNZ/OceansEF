@@ -17,19 +17,63 @@
   border: 1px solid black;
   padding: 8px 10px;
   font-family: "Lato";
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 14px;
   cursor: pointer;
 }
 .mobileNav {
-  display: none;
+  position: absolute;
+  height: 100%;
+  z-index: 2;
+  width: 100%;
+  top: 100px;
+  left: 0;
+  background: #fff;
+  padding-top: 150px;
+  ul {
+    padding: 0;
+    margin: 0;
+    padding-left: 25px;
+  }
+  .navItem {
+    font-size: 43px;
+    font-family: "Libre Baskerville";
+    font-weight: 400;
+    list-style: none;
+    margin-bottom: 55px;
+    .number {
+      font-size: 16px;
+      display: inline-block;
+      margin-right: 8px;
+      line-height: 24px;
+    }
+  }
 }
-.mobileNavButton {
-  font-family: "Lato";
-  font-weight: bold;
-  background: none;
-  border: none;
-  padding: 0;
+
+.menuTextContainer {
   margin-right: 13px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  color: #000;
+  cursor: pointer;
+  &.menuMobile {
+    color: #fff;
+  }
+  span {
+    display: block;
+    font-family: "lato";
+    font-size: 15px;
+    line-height: 34px;
+    &:nth-child(2) {
+      position: absolute;
+      top: 100%;
+    }
+  }
+}
+.headerButtons {
+  display: flex;
 }
 
 .desktopNav {
@@ -57,6 +101,10 @@
 }
 
 @media (min-width: 1200px) {
+  .mobileNav {
+    display: none;
+  }
+  .menuTextContainer,
   .mobileNavButton {
     display: none;
   }

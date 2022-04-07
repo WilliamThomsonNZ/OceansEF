@@ -1,4 +1,4 @@
-import { React, useRef, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useAppContext } from "../../context/state";
 import Web3Modal from "web3modal";
 import { getProviderOrSigner } from "../../utils";
@@ -7,8 +7,10 @@ import logo from "../../assets/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { readifyAddress } from "../../utils";
-
+import { motion, AnimatePresence } from "framer-motion";
+import { variants } from "../../utils/framerMotionVariants";
 export default function Header({ currentPage }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const userState = useAppContext();
   async function connectWallet() {
     try {
@@ -30,8 +32,22 @@ export default function Header({ currentPage }) {
     console.log(currentPage);
     handleConnectWalletClick();
   }, []);
+  function handleMenuScroll() {
+    setMenuOpen((menuOpen) => !menuOpen);
+  }
+
+  const listContainer = {
+    open: {
+      transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+    },
+  };
   return (
-    <header className={styles.header}>
+    <motion.header
+      className={styles.header}
+      variants={variants.headerVariants}
+      initial={"initial"}
+      animate={"animate"}
+    >
       <Link href="/">
         <Image
           src={logo}
@@ -41,29 +57,6 @@ export default function Header({ currentPage }) {
           height={55}
         />
       </Link>
-      <nav className={styles.mobileNav}>
-        <ul>
-          <li
-            className={`${styles.navItem} ${
-              currentPage == "mint" ? styles.selected : undefined
-            }`}
-          >
-            <Link href="/mint">
-              <a>MINT</a>
-            </Link>
-          </li>
-          <li
-            className={`${styles.navItem} ${
-              currentPage == "gallery" ? styles.selected : undefined
-            }`}
-          >
-            <Link href="/gallery">
-              <a>GALLERY</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>OPENSEA</li>
-        </ul>
-      </nav>
       <nav className={styles.desktopNav}>
         <ul>
           <li
@@ -88,7 +81,23 @@ export default function Header({ currentPage }) {
         </ul>
       </nav>
       <div className={styles.headerButtons}>
-        <button className={styles.mobileNavButton}>MENU</button>
+        <motion.div
+          className={styles.menuTextContainer}
+          onClick={(e) => handleMenuScroll()}
+        >
+          <motion.span
+            variants={variants.menuScroll}
+            animate={menuOpen ? "open" : "closed"}
+          >
+            Menu
+          </motion.span>
+          <motion.span
+            variants={variants.menuScroll}
+            animate={menuOpen ? "open" : "closed"}
+          >
+            Close
+          </motion.span>
+        </motion.div>
         <button
           className={`${styles.button} ${styles.connectWallet}`}
           onClick={(e) => handleConnectWalletClick(e)}
@@ -98,6 +107,51 @@ export default function Header({ currentPage }) {
             : "Connect Wallet"}
         </button>
       </div>
-    </header>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            className={styles.mobileNav}
+            key="menuContainer"
+            variants={variants.menuContainer}
+            initial="closed"
+            animate="open"
+            exit="closed"
+          >
+            <motion.ul variants={variants.listContainer}>
+              <motion.li
+                variants={variants.menuItem}
+                className={`${styles.navItem} ${
+                  currentPage == "mint" ? styles.selected : undefined
+                }`}
+              >
+                <Link href="/mint">
+                  <a>
+                    <span className={styles.number}>1.</span>MINT
+                  </a>
+                </Link>
+              </motion.li>
+              <motion.li
+                variants={variants.menuItem}
+                className={`${styles.navItem} ${
+                  currentPage == "gallery" ? styles.selected : undefined
+                }`}
+              >
+                <Link href="/gallery">
+                  <a>
+                    <span className={styles.number}>2.</span>GALLERY
+                  </a>
+                </Link>
+              </motion.li>
+              <motion.li
+                variants={variants.menuItem}
+                className={styles.navItem}
+              >
+                <span className={styles.number}>3.</span>OPENSEA
+              </motion.li>
+            </motion.ul>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

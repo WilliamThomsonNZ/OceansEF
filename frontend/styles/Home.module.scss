@@ -1,6 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Libre+Baskerville&family=Lato&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Arimo&family=Lato:wght@400;700&display=swap");
-
+.introContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .letter {
+    font-family: "Libre Baskerville";
+    font-size: 60px;
+    letter-spacing: 0.5em;
+    font-weight: lighter;
+    display: inline-block;
+  }
+}
 .container {
   width: 100vw;
   padding: 0 25px;
@@ -102,22 +115,49 @@
 }
 
 .moreAboutPhotographer {
-  background: none;
-  border: none;
-  letter-spacing: 0.06em;
-  padding: 0 0 6px 0;
-  border-bottom: 1px solid #000;
-  font-family: "Lato";
-  font-weight: 500;
-  margin-bottom: 35px;
-  color: #000;
+  button {
+    background: none;
+    border: none;
+    letter-spacing: 0.06em;
+    padding: 0 0 6px 0;
+    font-family: "Lato";
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+  }
+
+  .buttonUnderline {
+    background: #000;
+    height: 1px;
+    display: block;
+    margin-top: 5px;
+  }
+}
+.imageIntroAnimation {
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.mainImageContainer {
+  position: relative;
+  overflow: hidden;
+  height: fit-content;
 }
 .mainHomeImage {
+  height: 100%;
   margin-bottom: 35px !important;
 }
+.imageInnerContainer {
+  overflow: hidden;
+}
 .subImageContainer {
+  position: relative;
+  overflow: hidden;
   //width: 300px;
   grid-area: subImage;
+  height: fit-content;
 }
 @media (min-width: 768px) {
   .heading {
@@ -197,6 +237,7 @@
   }
   .mainImageContainer {
     grid-area: mainImage;
+
     .mainHomeImage {
       margin-bottom: 0px !important;
     }
