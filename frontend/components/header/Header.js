@@ -77,7 +77,11 @@ export default function Header({ currentPage }) {
               <a>GALLERY</a>
             </Link>
           </li>
-          <li className={styles.navItem}>OPENSEA</li>
+          <li className={styles.navItem}>
+            <a href={"#"} target="_blank">
+              OPENSEA
+            </a>
+          </li>
         </ul>
       </nav>
       <div className={styles.headerButtons}>
@@ -146,7 +150,9 @@ export default function Header({ currentPage }) {
                 variants={variants.menuItem}
                 className={styles.navItem}
               >
-                <span className={styles.number}>3.</span>OPENSEA
+                <a href={"#"} target="_blank">
+                  <span className={styles.number}>3.</span>OPENSEA
+                </a>
               </motion.li>
             </motion.ul>
           </motion.nav>

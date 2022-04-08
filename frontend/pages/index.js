@@ -9,7 +9,7 @@ import { useAppContext } from "../context/state";
 import { getAmountMinted } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "../utils/framerMotionVariants";
-import useIntro from "../utils/useIntro";
+import Link from "next/link";
 
 export default function Home() {
   const [amountToMint, setAmountToMint] = useState(0);
@@ -59,20 +59,21 @@ export default function Home() {
                   animate={"animate"}
                 >
                   Oceans By Erin Fleming
-                </motion.h1>
-                <motion.button
-                  variants={variants.fadeIn}
-                  initial={"initial"}
-                  animate={"animate"}
-                  className={`${styles.button} ${styles.mintButton}`}
-                  onClick={(e) => handleMintClick(e)}
-                >
-                  {loading
-                    ? "Minting..."
-                    : mintedAmount == 10
-                    ? "Sold Out"
-                    : "Mint"}
-                </motion.button>
+                </motion.h1>{" "}
+                <Link to={"/mint"} href={"/mint"}>
+                  <motion.button
+                    variants={variants.fadeIn}
+                    initial={"initial"}
+                    animate={"animate"}
+                    className={`${styles.button} ${styles.mintButton}`}
+                  >
+                    {loading
+                      ? "Minting..."
+                      : mintedAmount == 10
+                      ? "Sold Out"
+                      : "Mint"}
+                  </motion.button>
+                </Link>
                 <div
                   className={`${styles.moreAboutPhotographer} ${styles.mobileMoreButton}`}
                 >

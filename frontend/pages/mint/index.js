@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header.js";
 import styles from "../../styles/Mint.module.scss";
 import sharedStyles from "../../styles/Home.module.scss";
-import mainImage from "../../assets/8.jpg";
+import mainImage from "../../assets/background.jpg";
 import Image from "next/image";
 import { Contract, utils } from "ethers";
 import { getAmountMinted, getProviderOrSigner } from "../../utils";
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../../constants";
 import Loading from "../../components/LoadingAnimation";
+import { motion } from "framer-motion";
+import { variants } from "../../utils/framerMotionVariants";
 
 export default function Mint() {
   const [totalMinted, setTotalMinted] = useState("0");
@@ -76,7 +78,12 @@ export default function Mint() {
       <Header currentPage={"mint"} />
       <section className={styles.mintPageContainer}>
         <div className={styles.layoutGrid}>
-          <div className={styles.mintContainer}>
+          <motion.div
+            className={styles.mintContainer}
+            variants={variants.fadeIn}
+            initial={"initial"}
+            animate={"animate"}
+          >
             <h6 className={sharedStyles.subHeading}>
               A COLLECTION OF AOTEAROAS COASTLINES
             </h6>
@@ -125,14 +132,27 @@ export default function Mint() {
             >
               {errorText}
             </span>
-          </div>
+          </motion.div>
           <div className={styles.mainImageContainer}>
             <div>
-              <Image
-                src={mainImage}
-                alt={"Image of beach"}
-                className={styles.mainHomeImage}
-              />
+              <motion.div
+                className={styles.imageInnerContainer}
+                variants={variants.imageScale}
+                initial={"initial"}
+                animate={"animate"}
+              >
+                <Image
+                  src={mainImage}
+                  alt={"Image of beach"}
+                  className={styles.mainHomeImage}
+                />
+              </motion.div>
+              <motion.div
+                variants={variants.imageIntro}
+                initial={"initial"}
+                animate={"animate"}
+                className={styles.imageIntroAnimation}
+              ></motion.div>
             </div>
           </div>
         </div>

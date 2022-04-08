@@ -68,7 +68,4 @@ contract Oceans is ERC721, Ownable {
         }("");
         require(success);
     }
-    //The images need can be done off chain.
-    //Needs to return which tokens belong to which address
-    function getAllAssetsOwners() 
 }

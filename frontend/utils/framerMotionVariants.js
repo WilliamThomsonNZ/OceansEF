@@ -78,6 +78,13 @@ export const variants = {
         ease: [0.76, 0, 0.24, 1],
       },
     },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 1.5,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
   },
   buttonUnderline: {
     initial: {
@@ -115,6 +122,49 @@ export const variants = {
       opacity: 0,
       transition: {
         duration: 1.5,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
+  },
+  menuScroll: {
+    open: {
+      y: "-100%",
+      transition: {
+        duration: 0.8,
+        ease: [0.405, 0, 0.025, 1],
+      },
+    },
+    closed: {
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.405, 0, 0.025, 1],
+      },
+    },
+  },
+  loadingContainer: {
+    initial: {},
+    animate: { transition: { staggerChildren: 0.15 } },
+    exit: { transition: { staggerChildren: 0.15 } },
+  },
+  loadingLetter: {
+    initial: {
+      opacity: 0,
+      y: -30,
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
+    exit: {
+      y: 30,
+      opacity: 0,
+      transition: {
+        duration: 1,
         ease: [0.76, 0, 0.24, 1],
       },
     },

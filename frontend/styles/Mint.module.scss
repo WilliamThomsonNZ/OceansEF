@@ -20,6 +20,19 @@
     margin-bottom: 45px;
   }
 }
+.mainImageContainer {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  margin-bottom: 25px;
+}
+.imageIntroAnimation {
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .errorMessage {
   color: red;
   visibility: hidden;
@@ -80,9 +93,10 @@
     max-width: 1600px;
     gap: 80px;
     grid-template-columns: 1fr 1fr;
+    height: 100%;
   }
   .mintPageContainer {
-    height: 82vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;

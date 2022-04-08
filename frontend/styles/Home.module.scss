@@ -18,7 +18,7 @@
   width: 100vw;
   padding: 0 25px;
   span {
-    z-index: -1;
+    z-index: 1;
   }
 }
 .desktopMoreButton {
@@ -69,6 +69,7 @@
   letter-spacing: 0.275em;
   font-size: 11px;
   margin-bottom: 100px;
+  cursor: pointer;
 }
 .backgroundImage {
   position: absolute;
@@ -177,6 +178,10 @@
   .backgroundImage {
     object-position: 50% 75%;
   }
+}
+.mobileMoreButton {
+  margin-bottom: 25px;
+  width: fit-content;
 }
 @media (min-width: 1300px) {
   .mobileMoreButton {
