@@ -5,6 +5,7 @@ import styles from "../../styles/Gallery.module.scss";
 import Image from "next/image";
 import { readifyAddress } from "../../utils";
 import Loading from "../../components/LoadingAnimation";
+import Head from "next/head";
 import { variants } from "../../utils/framerMotionVariants";
 import { motion, AnimatePresence } from "framer-motion";
 export default function Gallery() {
@@ -64,108 +65,118 @@ export default function Gallery() {
     console.log(userState);
   }, []);
   return (
-    <main className={styles.container}>
-      <Header currentPage={"gallery"} />
-      <motion.h1
-        variants={variants.fadeIn}
-        initial={"initial"}
-        animate={"animate"}
-        className={styles.heading}
-      >
-        View the Collection
-      </motion.h1>
-      <motion.h6
-        variants={variants.fadeIn}
-        initial={"initial"}
-        animate={"animate"}
-        className={styles.subHeading}
-      >
-        SCROLL DOWN TO VIEW MINTED OCEANS
-      </motion.h6>
-      <AnimatePresence exitBeforeEnter>
-        {loading ? (
-          <motion.div
-            className={styles.loadingContainer}
-            key={"loadingContainer"}
-            initial={"initial"}
-            animate={"animate"}
-            exit={"exit"}
-          >
+    <>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Libre+Baskerville&display=swap"
+          rel="stylesheet"
+        />
+      </Head>{" "}
+      <main className={styles.container}>
+        <Header currentPage={"gallery"} />
+        <motion.h1
+          variants={variants.fadeIn}
+          initial={"initial"}
+          animate={"animate"}
+          className={styles.heading}
+        >
+          View the Collection
+        </motion.h1>
+        <motion.h6
+          variants={variants.fadeIn}
+          initial={"initial"}
+          animate={"animate"}
+          className={styles.subHeading}
+        >
+          SCROLL DOWN TO VIEW MINTED OCEANS
+        </motion.h6>
+        <AnimatePresence exitBeforeEnter>
+          {loading ? (
             <motion.div
+              className={styles.loadingContainer}
+              key={"loadingContainer"}
               initial={"initial"}
               animate={"animate"}
               exit={"exit"}
-              variants={variants.loadingContainer}
-              key={"container"}
             >
-              <motion.span variants={variants.loadingLetter} key={"L"}>
-                L
-              </motion.span>
-              <motion.span variants={variants.loadingLetter} key={"O"}>
-                O
-              </motion.span>
-              <motion.span variants={variants.loadingLetter} key={"A"}>
-                A
-              </motion.span>
-              <motion.span variants={variants.loadingLetter} key={"D"}>
-                D
-              </motion.span>
-              <motion.span variants={variants.loadingLetter} key={"I"}>
-                I
-              </motion.span>
-              <motion.span variants={variants.loadingLetter} key={"N"}>
-                N
-              </motion.span>
-              <motion.span variants={variants.loadingLetter} key={"G"}>
-                G
-              </motion.span>
-            </motion.div>
-          </motion.div>
-        ) : (
-          <>
-            <div className={styles.filterButtonContainer}>
-              <motion.button
-                className={styles.filterButton}
-                onClick={() => filterOceans()}
-                variants={variants.fadeIn}
+              <motion.div
                 initial={"initial"}
                 animate={"animate"}
+                exit={"exit"}
+                variants={variants.loadingContainer}
+                key={"container"}
               >
-                {!filterActive ? "VIEW MY OCEANS" : "VIEW ALL OCEANS"}
-                <motion.span
-                  className={styles.buttonUnderline}
-                  variants={variants.buttonUnderline}
+                <motion.span variants={variants.loadingLetter} key={"L"}>
+                  L
+                </motion.span>
+                <motion.span variants={variants.loadingLetter} key={"O"}>
+                  O
+                </motion.span>
+                <motion.span variants={variants.loadingLetter} key={"A"}>
+                  A
+                </motion.span>
+                <motion.span variants={variants.loadingLetter} key={"D"}>
+                  D
+                </motion.span>
+                <motion.span variants={variants.loadingLetter} key={"I"}>
+                  I
+                </motion.span>
+                <motion.span variants={variants.loadingLetter} key={"N"}>
+                  N
+                </motion.span>
+                <motion.span variants={variants.loadingLetter} key={"G"}>
+                  G
+                </motion.span>
+              </motion.div>
+            </motion.div>
+          ) : (
+            <>
+              <div className={styles.filterButtonContainer}>
+                <motion.button
+                  className={styles.filterButton}
+                  onClick={() => filterOceans()}
+                  variants={variants.fadeIn}
                   initial={"initial"}
                   animate={"animate"}
-                ></motion.span>
-              </motion.button>
-            </div>
-            <AnimatePresence exitBeforeEnter>
-              <motion.section
-                className={styles.galleryGrid}
-                key={"outerContainer"}
-              >
-                {!filterActive
-                  ? imageObjects.map((obj, index) => (
-                      <GalleryItem
-                        key={index}
-                        image={obj.image}
-                        owner={obj.owner}
-                      />
-                    ))
-                  : filteredImageObjects.map((obj, index) => (
-                      <GalleryItem
-                        key={index}
-                        image={obj.image}
-                        owner={obj.owner}
-                      />
-                    ))}
-              </motion.section>
-            </AnimatePresence>
-          </>
-        )}
-      </AnimatePresence>
-    </main>
+                >
+                  {!filterActive ? "VIEW MY OCEANS" : "VIEW ALL OCEANS"}
+                  <motion.span
+                    className={styles.buttonUnderline}
+                    variants={variants.buttonUnderline}
+                    initial={"initial"}
+                    animate={"animate"}
+                  ></motion.span>
+                </motion.button>
+              </div>
+              <AnimatePresence exitBeforeEnter>
+                <motion.section
+                  className={styles.galleryGrid}
+                  key={"outerContainer"}
+                >
+                  {!filterActive
+                    ? imageObjects.map((obj, index) => (
+                        <GalleryItem
+                          key={index}
+                          image={obj.image}
+                          owner={obj.owner}
+                        />
+                      ))
+                    : filteredImageObjects.map((obj, index) => (
+                        <GalleryItem
+                          key={index}
+                          image={obj.image}
+                          owner={obj.owner}
+                        />
+                      ))}
+                </motion.section>
+              </AnimatePresence>
+            </>
+          )}
+        </AnimatePresence>
+      </main>
+    </>
   );
 }
 

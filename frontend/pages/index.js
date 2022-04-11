@@ -9,6 +9,7 @@ import { getAmountMinted } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "../utils/framerMotionVariants";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Home() {
   const [mintedAmount, setMintedAmount] = useState(0);
@@ -36,6 +37,14 @@ export default function Home() {
 
   return (
     <AnimatePresence exitBeforeEnter>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Libre+Baskerville&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       {introComplete ? (
         <main className={styles.container}>
           <Header currentPage={"Home"} />

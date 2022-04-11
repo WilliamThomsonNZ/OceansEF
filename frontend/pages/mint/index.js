@@ -9,6 +9,7 @@ import { Contract, utils } from "ethers";
 import { getAmountMinted, getProviderOrSigner } from "../../utils";
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../../constants";
 import { motion } from "framer-motion";
+import Head from "next/head";
 import { variants } from "../../utils/framerMotionVariants";
 
 export default function Mint() {
@@ -84,93 +85,105 @@ export default function Mint() {
   }, []);
 
   return (
-    <main className={sharedStyles.container}>
-      <Header currentPage={"mint"} />
-      <section className={styles.mintPageContainer}>
-        <div className={styles.layoutGrid}>
-          <motion.div
-            className={styles.mintContainer}
-            variants={variants.fadeIn}
-            initial={"initial"}
-            animate={"animate"}
-          >
-            <h6 className={sharedStyles.subHeading}>
-              A COLLECTION OF AOTEAROAS COASTLINES
-            </h6>
-            <h1 className={`${sharedStyles.heading} ${styles.heading}`}>
-              Mint a Coastline
-            </h1>
-            <p className={styles.description}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-              lacinia nibh vel sem luctus convallis vel ac diam. Nunc accumsan
-              leo eu mauris venenatis posuere.
-            </p>
-            <h6 className={styles.totalMinted}>
-              TOTAL MINTED: {totalMinted}/10
-            </h6>
-            <div className={styles.mintButtonContainer}>
-              <button
-                className={`${sharedStyles.button} ${sharedStyles.mintButton} ${
-                  styles.mintButton
-                } ${
-                  loading || !userState.userWallet ? styles.disabled : undefined
+    <>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Libre+Baskerville&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <main className={sharedStyles.container}>
+        <Header currentPage={"mint"} />
+        <section className={styles.mintPageContainer}>
+          <div className={styles.layoutGrid}>
+            <motion.div
+              className={styles.mintContainer}
+              variants={variants.fadeIn}
+              initial={"initial"}
+              animate={"animate"}
+            >
+              <h6 className={sharedStyles.subHeading}>
+                A COLLECTION OF AOTEAROAS COASTLINES
+              </h6>
+              <h1 className={`${sharedStyles.heading} ${styles.heading}`}>
+                Mint a Coastline
+              </h1>
+              <p className={styles.description}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                lacinia nibh vel sem luctus convallis vel ac diam. Nunc accumsan
+                leo eu mauris venenatis posuere.
+              </p>
+              <h6 className={styles.totalMinted}>
+                TOTAL MINTED: {totalMinted}/10
+              </h6>
+              <div className={styles.mintButtonContainer}>
+                <button
+                  className={`${sharedStyles.button} ${
+                    sharedStyles.mintButton
+                  } ${styles.mintButton} ${
+                    loading || !userState.userWallet
+                      ? styles.disabled
+                      : undefined
+                  }`}
+                  onClick={(e) => handleMintClick(e)}
+                >
+                  {totalMinted == 10
+                    ? "Sold Out"
+                    : loading
+                    ? "Minting..."
+                    : "Mint"}
+                </button>
+                <div className={styles.mintControls}>
+                  <span className={styles.numberToMint}>{amountToMint}</span>
+                  <button
+                    onClick={() => handleMintAmount()}
+                    className={`${styles.mintButtonIncrease} ${styles.controlButton}`}
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => handleMintAmount(true)}
+                    className={`${styles.mintButtonDecrease} ${styles.controlButton}`}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <span
+                className={`${styles.errorMessage} ${
+                  displayError ? styles.showError : undefined
                 }`}
-                onClick={(e) => handleMintClick(e)}
               >
-                {totalMinted == 10
-                  ? "Sold Out"
-                  : loading
-                  ? "Minting..."
-                  : "Mint"}
-              </button>
-              <div className={styles.mintControls}>
-                <span className={styles.numberToMint}>{amountToMint}</span>
-                <button
-                  onClick={() => handleMintAmount()}
-                  className={`${styles.mintButtonIncrease} ${styles.controlButton}`}
+                {errorText}
+              </span>
+            </motion.div>
+            <div className={styles.mainImageContainer}>
+              <div>
+                <motion.div
+                  className={styles.imageInnerContainer}
+                  variants={variants.imageScale}
+                  initial={"initial"}
+                  animate={"animate"}
                 >
-                  +
-                </button>
-                <button
-                  onClick={() => handleMintAmount(true)}
-                  className={`${styles.mintButtonDecrease} ${styles.controlButton}`}
-                >
-                  -
-                </button>
+                  <Image
+                    src={mainImage}
+                    alt={"Image of beach"}
+                    className={styles.mainHomeImage}
+                  />
+                </motion.div>
+                <motion.div
+                  variants={variants.imageIntro}
+                  initial={"initial"}
+                  animate={"animate"}
+                  className={styles.imageIntroAnimation}
+                ></motion.div>
               </div>
             </div>
-            <span
-              className={`${styles.errorMessage} ${
-                displayError ? styles.showError : undefined
-              }`}
-            >
-              {errorText}
-            </span>
-          </motion.div>
-          <div className={styles.mainImageContainer}>
-            <div>
-              <motion.div
-                className={styles.imageInnerContainer}
-                variants={variants.imageScale}
-                initial={"initial"}
-                animate={"animate"}
-              >
-                <Image
-                  src={mainImage}
-                  alt={"Image of beach"}
-                  className={styles.mainHomeImage}
-                />
-              </motion.div>
-              <motion.div
-                variants={variants.imageIntro}
-                initial={"initial"}
-                animate={"animate"}
-                className={styles.imageIntroAnimation}
-              ></motion.div>
-            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   );
 }
