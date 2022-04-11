@@ -12,7 +12,7 @@ contract Oceans is ERC721, Ownable {
     string private baseURI;
     bool public paused = false;
 
-    constructor() ERC721("Oceans by Erin Fleming", "OFM") {}
+    constructor() ERC721("Oceans by Erin Fleming", "OEM") {}
 
     function mint(uint256 _amount) public payable {
         require(_amount <= maxMintPerTx, "3_PER_TX_MAX");

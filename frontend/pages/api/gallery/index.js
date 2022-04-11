@@ -1,6 +1,5 @@
 import nc from "next-connect";
 const axios = require("axios");
-require("dotenv").config({ path: ".env" });
 
 const handler = nc().get((req, res) => {
   axios({

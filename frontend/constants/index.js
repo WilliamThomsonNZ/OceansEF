@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0x1c7047DCf46717cd204D1575f9cd990194Ffb6e6";
+export const CONTRACT_ADDRESS = "0x3Bc71E4db87DeC5CC46bAcBC0aFF0B12BE187fEF";
 export const CONTRACT_ABI = [
   {
     inputs: [],
@@ -206,6 +206,19 @@ export const CONTRACT_ABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "maxMintPerTx",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "uint256",
@@ -271,6 +284,19 @@ export const CONTRACT_ABI = [
         internalType: "address",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "paused",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
       },
     ],
     stateMutability: "view",
@@ -361,6 +387,19 @@ export const CONTRACT_ABI = [
       },
     ],
     name: "setBaseURI",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bool",
+        name: "_val",
+        type: "bool",
+      },
+    ],
+    name: "setContractPaused",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
