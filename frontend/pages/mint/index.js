@@ -22,11 +22,10 @@ export default function Mint() {
   function handleMintAmount(isSubtract = false) {
     let mintAmount;
     if (isSubtract) {
-      mintAmount = amountToMint > 0 ? amountToMint - 1 : 0;
+      mintAmount = amountToMint > 1 ? amountToMint - 1 : 1;
     } else {
       mintAmount = amountToMint < 3 ? amountToMint + 1 : 3;
     }
-    console.log(mintAmount);
     setAmountToMint(mintAmount);
   }
 

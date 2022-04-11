@@ -29,7 +29,6 @@ export default function Home() {
       }, 4000);
     }
     async function run() {
-      console.log(userState);
       const amount = await getAmountMinted();
       setMintedAmount(amount);
     }
