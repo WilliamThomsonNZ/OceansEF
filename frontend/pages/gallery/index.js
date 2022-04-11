@@ -8,6 +8,7 @@ import Loading from "../../components/LoadingAnimation";
 import Head from "next/head";
 import { variants } from "../../utils/framerMotionVariants";
 import { motion, AnimatePresence } from "framer-motion";
+import { CONTRACT_ADDRESS } from "../../constants";
 export default function Gallery() {
   const baseURI = "https://gateway.moralisipfs.com/ipfs/";
   const [imageObjects, setImageObjects] = useState([]);
@@ -20,6 +21,7 @@ export default function Gallery() {
     setLoading(true);
     const res = await fetch("/api/gallery");
     const data = await res.json();
+    console.log(data);
     const images = data.result.map(async (token) => {
       const tokenURI = token.token_uri;
 
@@ -27,14 +29,14 @@ export default function Gallery() {
         const res = await fetch(tokenURI);
         const data = await res.json();
         const imageURL = data.image.split("ipfs://")[1];
-
         return {
           image: baseURI + imageURL,
           owner: token.owner_of,
+          tokenId: token.token_id,
         };
       }
     });
-    const results = Promise.all(images).then((res) => {
+    Promise.all(images).then((res) => {
       const images = res.filter((image) =>
         image !== undefined ? true : false
       );
@@ -163,6 +165,7 @@ export default function Gallery() {
                           key={index}
                           image={obj.image}
                           owner={obj.owner}
+                          id={obj.tokenId}
                         />
                       ))
                     : filteredImageObjects.map((obj, index) => (
@@ -170,6 +173,7 @@ export default function Gallery() {
                           key={index}
                           image={obj.image}
                           owner={obj.owner}
+                          id={obj.tokenId}
                         />
                       ))}
                 </motion.section>
@@ -182,9 +186,9 @@ export default function Gallery() {
   );
 }
 
-function GalleryItem({ image, owner }) {
+function GalleryItem({ image, owner, id }) {
   if (image == undefined || owner == undefined) return "";
-
+  console.log(image);
   return (
     <motion.article
       className={styles.cardContainer}
@@ -209,7 +213,7 @@ function GalleryItem({ image, owner }) {
           </h6>
         </div>
         <a
-          href={"#"}
+          href={`https://opensea.io/${CONTRACT_ADDRESS}/${id}`}
           className={styles.openseaLink}
           target={"_blank"}
           rel="noreferrer"

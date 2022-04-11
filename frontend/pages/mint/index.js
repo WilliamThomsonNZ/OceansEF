@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../../components/header/index.js";
 import styles from "../../styles/Mint.module.scss";
 import sharedStyles from "../../styles/Home.module.scss";
-import mainImage from "../../assets/background.jpg";
+import mainImage from "../../assets/5.jpg";
 import Image from "next/image";
 import { Contract, utils } from "ethers";
 import { getAmountMinted, getProviderOrSigner } from "../../utils";
@@ -112,10 +112,13 @@ export default function Mint() {
               <h1 className={`${sharedStyles.heading} ${styles.heading}`}>
                 Mint a Coastline
               </h1>
+              <h6 className={styles.totalMinted}>PRICE: 0.044 ETH</h6>
               <p className={styles.description}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                lacinia nibh vel sem luctus convallis vel ac diam. Nunc accumsan
-                leo eu mauris venenatis posuere.
+                Oceans by Erin Fleming is a growing collection of ocean
+                photography. Oceans serves as the genesis collection which will
+                grant free minting for all future collections. Proceeds from
+                mint will be used to upgrade equipment and cover travel expenses
+                to help grow the collection. Maximum of three per transaction.
               </p>
               <h6 className={styles.totalMinted}>
                 TOTAL MINTED: {totalMinted}/10

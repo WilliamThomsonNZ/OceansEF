@@ -2,8 +2,8 @@ import styles from "../styles/Home.module.scss";
 import { useAppContext } from "../context/state";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import background from "../assets/background.jpg";
-import subImage from "../assets/4.jpg";
+import background from "../assets/10.jpg";
+import subImage from "../assets/1.jpg";
 import Header from "../components/header/index.js";
 import { getAmountMinted } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,7 +16,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [introComplete, setIntroComplete] = useState(true);
   const userState = useAppContext();
-  //const introRun = useIntro();
 
   useEffect(() => {
     if (sessionStorage.getItem("introRun") == null) {

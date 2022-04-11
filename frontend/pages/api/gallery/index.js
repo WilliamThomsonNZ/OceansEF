@@ -1,10 +1,10 @@
 import nc from "next-connect";
 const axios = require("axios");
-
+import { CONTRACT_ADDRESS } from "../../../constants/index";
 const handler = nc().get((req, res) => {
   axios({
     method: "get",
-    url: "https://deep-index.moralis.io/api/v2/nft/0x2561Bbd59933fF8f6a0E2Cc897B41C446C223cfA/owners?chain=rinkeby&format=decimal",
+    url: `https://deep-index.moralis.io/api/v2/nft/${CONTRACT_ADDRESS}/owners?chain=rinkeby&format=decimal`,
     headers: {
       "x-api-key": process.env.MORALIS,
       accept: "application/json",

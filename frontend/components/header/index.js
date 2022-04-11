@@ -8,6 +8,7 @@ import Link from "next/link";
 import { readifyAddress } from "../../utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "../../utils/framerMotionVariants";
+import { CONTRACT_ADDRESS } from "../../constants";
 export default function Header({ currentPage }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const userState = useAppContext();
