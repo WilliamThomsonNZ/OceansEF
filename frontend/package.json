@@ -16,7 +16,8 @@
     "next-connect": "^0.12.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "web3modal": "^1.9.6"
   },
   "devDependencies": {
     "eslint": "8.11.0",
