@@ -1,6 +1,6 @@
 import { useAppContext } from "../../context/state";
 import { useState, useEffect } from "react";
-import Header from "../../components/Header/Header.js";
+import Header from "../../components/header/index.js";
 import styles from "../../styles/Mint.module.scss";
 import sharedStyles from "../../styles/Home.module.scss";
 import mainImage from "../../assets/background.jpg";

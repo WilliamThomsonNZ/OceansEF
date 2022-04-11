@@ -1,6 +1,6 @@
 import { useAppContext } from "../../context/state";
 import { useState, useEffect } from "react";
-import Header from "../../components/Header/Header.js";
+import Header from "../../components/header/index.js";
 import styles from "../../styles/Gallery.module.scss";
 import Image from "next/image";
 import { readifyAddress } from "../../utils";

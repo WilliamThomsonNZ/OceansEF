@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from "react";
 import { useAppContext } from "../../context/state";
-import Web3Modal from "web3modal";
 import { getProviderOrSigner } from "../../utils";
 import styles from "./Header.module.scss";
 import logo from "../../assets/Logo.png";
