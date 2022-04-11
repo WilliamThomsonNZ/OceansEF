@@ -1,23 +1,21 @@
 import styles from "../styles/Home.module.scss";
+import { useAppContext } from "../context/state";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import background from "../assets/background.jpg";
 import subImage from "../assets/4.jpg";
 import opensea from "../assets/opensea.png";
 import Header from "../components/header/Header.js";
-import { useAppContext } from "../context/state";
 import { getAmountMinted } from "../utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "../utils/framerMotionVariants";
 import Link from "next/link";
 
 export default function Home() {
-  const [amountToMint, setAmountToMint] = useState(0);
   const [mintedAmount, setMintedAmount] = useState(0);
-  const userState = useAppContext();
   const [loading, setLoading] = useState(false);
   const [introComplete, setIntroComplete] = useState(true);
-
+  const userState = useAppContext();
   //const introRun = useIntro();
 
   useEffect(() => {
@@ -29,8 +27,10 @@ export default function Home() {
       }, 4000);
     }
     async function run() {
-      const amount = await getAmountMinted();
-      setMintedAmount(amount);
+      if (userState.userWallet) {
+        const amount = await getAmountMinted();
+        setMintedAmount(amount);
+      }
     }
     run();
   }, []);

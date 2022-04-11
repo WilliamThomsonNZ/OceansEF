@@ -8,7 +8,6 @@ import Image from "next/image";
 import { Contract, utils } from "ethers";
 import { getAmountMinted, getProviderOrSigner } from "../../utils";
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../../constants";
-import Loading from "../../components/LoadingAnimation";
 import { motion } from "framer-motion";
 import { variants } from "../../utils/framerMotionVariants";
 
@@ -17,8 +16,10 @@ export default function Mint() {
   const [loading, setLoading] = useState(false);
   const [amountToMint, setAmountToMint] = useState(1);
   const [displayError, setDisplayError] = useState(false);
+  const userState = useAppContext();
   const [errorText, setErrorText] = useState("");
 
+  userState.userWallet;
   function handleMintAmount(isSubtract = false) {
     let mintAmount;
     if (isSubtract) {
@@ -28,8 +29,19 @@ export default function Mint() {
     }
     setAmountToMint(mintAmount);
   }
-
+  function handleError(text) {
+    setErrorText(text);
+    setDisplayError(true);
+    setTimeout(() => {
+      setDisplayError(false);
+    }, 4000);
+  }
   async function handleMintClick() {
+    if (!userState.userWallet) {
+      handleError("Please connect your wallet");
+      return;
+    }
+    if (loading) return;
     setLoading(true);
     const mintPrice = 0.044;
     try {
@@ -47,27 +59,26 @@ export default function Mint() {
       setLoading(false);
     } catch (err) {
       console.error(err);
+      let errorMessage;
       switch (err.code) {
         case "INSUFFICIENT_FUNDS":
-          setErrorText("Insufficient funds");
+          errorMessage = "Insufficient funds.";
           break;
         default:
-          setErrorText(
-            "An error occured and the transaction was not processed"
-          );
+          errorMessage =
+            "An error occured and the transaction was not processed.";
           break;
       }
-      setDisplayError(true);
+      handleError(errorMessage);
       setLoading(false);
-      setTimeout(() => {
-        setDisplayError(false);
-      }, 4000);
     }
   }
   useEffect(() => {
     async function run() {
-      const amount = await getAmountMinted();
-      setTotalMinted(amount);
+      if (userState.userWallet) {
+        const amount = await getAmountMinted();
+        setTotalMinted(amount);
+      }
     }
     run();
   }, []);
@@ -99,7 +110,11 @@ export default function Mint() {
             </h6>
             <div className={styles.mintButtonContainer}>
               <button
-                className={`${sharedStyles.button} ${sharedStyles.mintButton} ${styles.mintButton}`}
+                className={`${sharedStyles.button} ${sharedStyles.mintButton} ${
+                  styles.mintButton
+                } ${
+                  loading || !userState.userWallet ? styles.disabled : undefined
+                }`}
                 onClick={(e) => handleMintClick(e)}
               >
                 {totalMinted == 10
