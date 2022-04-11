@@ -1,13 +1,13 @@
 import nc from "next-connect";
 const axios = require("axios");
+require("dotenv").config({ path: ".env" });
 
 const handler = nc().get((req, res) => {
   axios({
     method: "get",
     url: "https://deep-index.moralis.io/api/v2/nft/0x2561Bbd59933fF8f6a0E2Cc897B41C446C223cfA/owners?chain=rinkeby&format=decimal",
     headers: {
-      "x-api-key":
-        "06lSTWgZeipLgzrjlto3x3Klge4PgWqkRw3WpGy1iG45cMOLu2rEcdNHfuBWEatk",
+      "x-api-key": process.env.MORALIS,
       accept: "application/json",
     },
   })
