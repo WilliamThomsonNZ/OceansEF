@@ -186,12 +186,21 @@ function GalleryItem({ image, owner }) {
         <div className={styles.ownerInfo}>
           <h6>OWNER</h6>
           <h6>
-            <a href={`https://opensea.io/${owner}`} target="_blank">
+            <a
+              href={`https://opensea.io/${owner}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               {readifyAddress(owner)}
             </a>
           </h6>
         </div>
-        <a href={"#"} className={styles.openseaLink} target={"_blank"}>
+        <a
+          href={"#"}
+          className={styles.openseaLink}
+          target={"_blank"}
+          rel="noreferrer"
+        >
           OPENSEA
         </a>
       </div>
