@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CONTRACT_ADDRESS } from "../../constants";
 export default function Gallery() {
   const baseURI = "https://ipfs.moralis.io:2053/ipfs/";
-  const imageMetaData = process.env.IMAGE_METADATA;
+  const imageMetaData = "QmcSiJFRnccqA1RtJPx9Ze5Huu4SqDs3Uv1fMVdijKKh9Y";
   const [imageObjects, setImageObjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredImageObjects, setFilteredImageObjects] = useState([]);
