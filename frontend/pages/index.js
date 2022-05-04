@@ -77,7 +77,7 @@ export default function Home() {
                   >
                     {loading
                       ? "Minting..."
-                      : mintedAmount == 10
+                      : mintedAmount == 20
                       ? "Sold Out"
                       : "Mint"}
                   </motion.button>

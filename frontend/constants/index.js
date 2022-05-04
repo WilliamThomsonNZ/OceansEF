@@ -1,9 +1,69 @@
-export const CONTRACT_ADDRESS = "0x3Bc71E4db87DeC5CC46bAcBC0aFF0B12BE187fEF";
+export const CONTRACT_ADDRESS = "0x999BE1C109F6Bc4405Bee72b9A5F3c7318218399";
 export const CONTRACT_ABI = [
   {
     inputs: [],
     stateMutability: "nonpayable",
     type: "constructor",
+  },
+  {
+    inputs: [],
+    name: "ApprovalCallerNotOwnerNorApproved",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "ApprovalQueryForNonexistentToken",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "ApprovalToCurrentOwner",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "ApproveToCaller",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "BalanceQueryForZeroAddress",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "MintToZeroAddress",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "MintZeroQuantity",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "OwnerQueryForNonexistentToken",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "TransferCallerNotOwnerNorApproved",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "TransferFromIncorrectOwner",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "TransferToNonERC721ReceiverImplementer",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "TransferToZeroAddress",
+    type: "error",
   },
   {
     anonymous: false,
@@ -138,19 +198,6 @@ export const CONTRACT_ABI = [
   },
   {
     inputs: [],
-    name: "currentTotalSupply",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "getAmountMinted",
     outputs: [
       {
@@ -208,6 +255,19 @@ export const CONTRACT_ABI = [
   {
     inputs: [],
     name: "maxMintPerTx",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "maxSupply",
     outputs: [
       {
         internalType: "uint256",
@@ -469,6 +529,19 @@ export const CONTRACT_ABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -500,19 +573,6 @@ export const CONTRACT_ABI = [
       },
     ],
     name: "transferOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_newTotalSupply",
-        type: "uint256",
-      },
-    ],
-    name: "updateTotalSupply",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

@@ -38,6 +38,10 @@ export default function Header({ currentPage }) {
       transition: { staggerChildren: 0.2, delayChildren: 0.2 },
     },
   };
+
+  useEffect(() => {
+    handleConnectWalletClick();
+  }, []);
   return (
     <motion.header
       className={styles.header}

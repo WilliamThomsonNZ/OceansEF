@@ -42,6 +42,9 @@
   text-transform: uppercase;
   margin-bottom: 15px;
   display: block;
+  &.successMessage {
+    color: green;
+  }
   &.showError {
     visibility: visible;
   }
