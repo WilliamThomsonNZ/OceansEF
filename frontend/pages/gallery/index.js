@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CONTRACT_ADDRESS } from "../../constants";
 export default function Gallery() {
   const baseURI = "https://ipfs.moralis.io:2053/ipfs/";
-  const imageMetaData = "QmcSiJFRnccqA1RtJPx9Ze5Huu4SqDs3Uv1fMVdijKKh9Y";
+  const imageMetaData = process.env.IMAGE_METADATA;
   const [imageObjects, setImageObjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredImageObjects, setFilteredImageObjects] = useState([]);
@@ -22,7 +22,6 @@ export default function Gallery() {
     setLoading(true);
     const res = await fetch("/api/gallery");
     const data = await res.json();
-    console.log(data);
     const images = data.result.map(async (token) => {
       const tokenURI = token.token_uri;
       if (tokenURI) {
@@ -51,7 +50,6 @@ export default function Gallery() {
     setLoading(true);
     setFilterActive(true);
     const addr = userState.userWallet;
-    console.log(imageObjects, addr);
     const myNfts = imageObjects.filter((obj) =>
       obj.owner.toLowerCase() === addr.toLowerCase() ? true : false
     );
@@ -61,7 +59,6 @@ export default function Gallery() {
   useEffect(() => {
     setFilterActive(false);
     getData();
-    console.log(userState);
   }, []);
   return (
     <>
@@ -185,7 +182,6 @@ export default function Gallery() {
 
 function GalleryItem({ image, owner, id }) {
   if (image == undefined || owner == undefined) return "";
-  console.log(image);
   return (
     <motion.article
       className={styles.cardContainer}
