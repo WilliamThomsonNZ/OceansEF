@@ -10,7 +10,8 @@ import { variants } from "../../utils/framerMotionVariants";
 import { motion, AnimatePresence } from "framer-motion";
 import { CONTRACT_ADDRESS } from "../../constants";
 export default function Gallery() {
-  const baseURI = "https://gateway.moralisipfs.com/ipfs/";
+  const baseURI = "https://ipfs.moralis.io:2053/ipfs/";
+  const imageMetaData = "QmcSiJFRnccqA1RtJPx9Ze5Huu4SqDs3Uv1fMVdijKKh9Y";
   const [imageObjects, setImageObjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredImageObjects, setFilteredImageObjects] = useState([]);
@@ -24,13 +25,9 @@ export default function Gallery() {
     console.log(data);
     const images = data.result.map(async (token) => {
       const tokenURI = token.token_uri;
-
       if (tokenURI) {
-        const res = await fetch(tokenURI);
-        const data = await res.json();
-        const imageURL = data.image.split("ipfs://")[1];
         return {
-          image: baseURI + imageURL,
+          image: `${baseURI}${imageMetaData}/${token.token_id}.jpg`,
           owner: token.owner_of,
           tokenId: token.token_id,
         };
