@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CONTRACT_ADDRESS } from "../../constants";
 export default function Gallery() {
   const baseURI = "https://ipfs.moralis.io:2053/ipfs/";
-  const imageMetaData = "QmcSiJFRnccqA1RtJPx9Ze5Huu4SqDs3Uv1fMVdijKKh9Y";
+  const imageMetaData = "QmSbAzFzSaFBESBabga3ZoECmjDFca1xV5wYBK7pki2auw";
   const [imageObjects, setImageObjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredImageObjects, setFilteredImageObjects] = useState([]);
@@ -23,14 +23,11 @@ export default function Gallery() {
     const res = await fetch("/api/gallery");
     const data = await res.json();
     const images = data.result.map(async (token) => {
-      const tokenURI = token.token_uri;
-      if (tokenURI) {
-        return {
-          image: `${baseURI}${imageMetaData}/${token.token_id}.jpg`,
-          owner: token.owner_of,
-          tokenId: token.token_id,
-        };
-      }
+      return {
+        image: `${baseURI}${imageMetaData}/${token.token_id}.jpg`,
+        owner: token.owner_of,
+        tokenId: token.token_id,
+      };
     });
     Promise.all(images).then((res) => {
       const images = res.filter((image) =>
@@ -204,7 +201,7 @@ function GalleryItem({ image, owner, id }) {
           </h6>
         </div>
         <a
-          href={`https://opensea.io/${CONTRACT_ADDRESS}/${id}`}
+          href={`https://opensea.io/assets/0xbe90cfcfa9b77f3ba8127943559bfa629c2b61f4/${id}`}
           className={styles.openseaLink}
           target={"_blank"}
           rel="noreferrer"

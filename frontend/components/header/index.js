@@ -79,7 +79,11 @@ export default function Header({ currentPage }) {
             </Link>
           </li>
           <li className={styles.navItem}>
-            <a href={"#"} target="_blank" rel="noreferrer">
+            <a
+              href={"https://opensea.io/collection/oceans-by-erin-fleming"}
+              target="_blank"
+              rel="noreferrer"
+            >
               OPENSEA
             </a>
           </li>
@@ -151,7 +155,11 @@ export default function Header({ currentPage }) {
                 variants={variants.menuItem}
                 className={styles.navItem}
               >
-                <a href={"#"} target="_blank" rel="noreferrer">
+                <a
+                  href={"https://opensea.io/collection/oceans-by-erin-fleming"}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <span className={styles.number}>3.</span>OPENSEA
                 </a>
               </motion.li>
