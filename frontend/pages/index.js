@@ -37,14 +37,12 @@ export default function Home() {
   return (
     <AnimatePresence exitBeforeEnter>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href={
-            "https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Libre+Baskerville&display=swap"
-          }
-          rel={"stylesheet"}
+        <title>Oceans By Erin Fleming</title>
+        <meta
+          name="description"
+          content="Oceans by Erin Fleming is a growing collection of ocean photography. Oceans serves as the genesis collection which will grant free minting for all future collections."
         />
+        <link rel="icon" href="/oceansFavicon.png" />
       </Head>
       {introComplete ? (
         <main className={styles.container}>

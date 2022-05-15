@@ -45,9 +45,9 @@ describe("Oceans ERC721", function () {
     it("Should fail to mint as incorrect eth amount sent", async function () {
       await expect(
         this.oceans.mint(1, {
-          value: ethers.utils.parseEther("0.05"),
+          value: ethers.utils.parseEther("0.01"),
         })
-      ).to.be.revertedWith("INVALID_ETH_AMOUNT");
+      ).to.be.revertedWith("INSUFFICIENT_ETH_AMOUNT");
     });
 
     it("Should fail to mint as collection is sold out", async function () {
@@ -63,14 +63,26 @@ describe("Oceans ERC721", function () {
         value: ethers.utils.parseEther("0.132"),
       });
       await tx2.wait();
-      const tx4 = await this.oceans.mint(1, {
-        value: ethers.utils.parseEther("0.044"),
+      const tx3 = await this.oceans.mint(3, {
+        value: ethers.utils.parseEther("0.132"),
       });
-      await tx4.wait();
+      await tx3.wait();
 
+      const tx5 = await this.oceans.mint(3, {
+        value: ethers.utils.parseEther("0.132"),
+      });
+      await tx5.wait();
+      const tx6 = await this.oceans.mint(3, {
+        value: ethers.utils.parseEther("0.132"),
+      });
+      await tx6.wait();
+      const tx7 = await this.oceans.mint(2, {
+        value: ethers.utils.parseEther("0.132"),
+      });
+      await tx7.wait();
       await expect(
         this.oceans.mint(1, {
-          value: ethers.utils.parseEther("0.044"),
+          value: ethers.utils.parseEther("0.02"),
         })
       ).to.be.revertedWith("MAX_SUPPLY_REACHED");
     });
@@ -87,18 +99,9 @@ describe("Oceans ERC721", function () {
       await tx.wait();
       await expect(
         this.oceans.mint(1, {
-          value: ethers.utils.parseEther("0.044"),
+          value: ethers.utils.parseEther("0.02"),
         })
       ).to.be.revertedWith("MINTING_IS_PAUSED");
-    });
-  });
-
-  describe("Updating the total supply", function () {
-    it("Should update the total supply from 10 to 20", async function () {
-      const tx = await this.oceans.updateTotalSupply(20);
-      await tx.wait();
-      const currentTotalSupply = await this.oceans.currentTotalSupply();
-      expect(currentTotalSupply).to.equal(20);
     });
   });
 
@@ -113,6 +116,7 @@ describe("Oceans ERC721", function () {
       const withdrawTx = await this.oceans.withdraw();
       await withdrawTx.wait();
       const ownerBalAfterWithdraw = await owner.getBalance();
+      console.log(Number(ownerBal), Number(ownerBalAfterWithdraw));
       expect(Number(ownerBal)).to.be.lessThan(Number(ownerBalAfterWithdraw));
     });
   });

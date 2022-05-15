@@ -18,7 +18,7 @@ const Loading = () => {
       <motion.span variants={variants.loadingLetter} key={"O"}>
         O
       </motion.span>
-      <motion.span variants={variants.loadingLetter} key={"A"}>
+      <motion.span variants={variants.loadingLetter} key={"p"}>
         A
       </motion.span>
       <motion.span variants={variants.loadingLetter} key={"D"}>
