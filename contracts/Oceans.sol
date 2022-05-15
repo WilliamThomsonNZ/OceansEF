@@ -1,17 +1,18 @@
+// SPDX-License-Identifier: MIT
+
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.7;
 
 contract Oceans is ERC721A, Ownable, ReentrancyGuard {
     using Strings for uint256;
     uint256 public maxSupply = 20;
     uint256 public mintPrice = 0.02 ether;
     uint256 public maxMintPerTx = 3;
-    uint256 public tokenID;
     string private baseURI;
-    bool public paused = false;
+    bool public paused = true;
 
     constructor() ERC721A("Oceans by Erin Fleming", "OEM") {}
 
@@ -46,10 +47,6 @@ contract Oceans is ERC721A, Ownable, ReentrancyGuard {
         paused = _val;
     }
 
-    // function updateTotalSupply(uint256 _newTotalSupply) public onlyOwner {
-    //     require(_newTotalSupply > currentTotalSupply, "CANT_LOWER_SUPPLY");
-    //     currentTotalSupply = _newTotalSupply;
-    // }
     function _startTokenId() internal view virtual override returns (uint256) {
         return 1;
     }

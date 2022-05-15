@@ -1,4 +1,4 @@
-export const CONTRACT_ADDRESS = "0x999BE1C109F6Bc4405Bee72b9A5F3c7318218399";
+export const CONTRACT_ADDRESS = "0xBe90cFCfA9B77f3BA8127943559BFa629c2B61F4";
 export const CONTRACT_ABI = [
   {
     inputs: [],
@@ -491,19 +491,6 @@ export const CONTRACT_ABI = [
         internalType: "string",
         name: "",
         type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "tokenID",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
